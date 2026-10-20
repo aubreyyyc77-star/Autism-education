@@ -1,150 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Blog</title>
-<style>
-  body { 
-    font-family: Arial, sans-serif; 
-    background-color: #f0f8f5; 
-    margin: 0; 
-    padding: 0; 
-  }
-  header { 
-    background-color: #2e7d32; 
-    color: white; 
-    text-align: center; 
-    padding: 40px 20px; 
-  }
-  header h1 { 
-    margin: 0; 
-    font-size: 3em; 
-  }
-  main { 
-    max-width: 800px; 
-    margin: 30px auto; 
-    padding: 0 20px; 
-  }
-  article { 
-    background-color: #dcedc8; 
-    border-radius: 10px; 
-    padding: 20px; 
-    margin-bottom: 20px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-    display: none; 
-  }
-  .post-title { 
-    cursor: pointer; 
-    font-size: 1.5em; 
-    margin-bottom: 10px; 
-  }
-  .post-title:hover { 
-    text-decoration: underline; 
-  }
-  .post-content img { 
-    max-width: 100%; 
-    height: auto; 
-    margin-top: 10px; 
-    border-radius: 5px; 
-  }
-  button { 
-    padding: 10px 20px; 
-    cursor:pointer; 
-    background-color:#2e7d32; 
-    color:white; 
-    border:none; 
-    border-radius:5px; 
-    margin:10px 5px 30px 0; 
-    font-size: 1em;
-  }
-  button:hover { 
-    background-color:#1b5e20; 
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autism Education</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #203247;
+      background: #f5f7fa;
+      line-height: 1.6;
+    }
+    header {
+      background: #18324b;
+      color: white;
+      padding: 20px 7%;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    nav a, nav button {
+      color: white;
+      text-decoration: none;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      font-size: 15px;
+      padding: 5px;
+    }
+    nav a:hover, nav button:hover { text-decoration: underline; }
+    .hero {
+      padding: 65px 7%;
+      background: #e2edf5;
+    }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); margin: 0 0 12px; }
+    .hero p { max-width: 620px; }
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 11px 18px;
+      border-radius: 7px;
+      background: #18324b;
+      color: white;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+    }
+    main { padding: 35px 7%; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      border: 1px solid #dce4eb;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 18px #20324718;
+    }
+    .card h3 { margin-top: 0; }
+    section.content {
+      padding: 30px 0;
+      border-bottom: 1px solid #dce4eb;
+      scroll-margin-top: 20px;
+    }
+    footer {
+      padding: 25px 7%;
+      background: #18324b;
+      color: white;
+      text-align: center;
+    }
+    [hidden] { display: none !important; }
+  </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <strong>Autism Education</strong>
+      <div>
+        <a href="#home" data-en="Home" data-zh="首页">Home</a>
+        <a href="#about" data-en="About" data-zh="关于">About</a>
+        <a href="#education" data-en="Education" data-zh="教育">Education</a>
+        <a href="#interviews" data-en="Interviews" data-zh="教师访谈">Interviews</a>
+        <a href="#research" data-en="Research" data-zh="研究">Research</a>
+        <a href="#resources" data-en="Resources" data-zh="资源">Resources</a>
+        <button id="languageButton" type="button">中文</button>
+      </div>
+    </nav>
+  </header>
 
-<header>
-  <h1>Welcome to My Blog</h1>
-</header>
+  <div class="hero" id="home">
+    <h1 data-en="Autism Education" data-zh="自闭症教育">Autism Education</h1>
+    <p data-en="[Add your introduction here.]"
+       data-zh="[在这里填写你的网站介绍。]">[Add your introduction here.]</p>
+    <a class="button" href="#explore"
+       data-en="Explore the Website"
+       data-zh="探索网站">Explore the Website</a>
+  </div>
 
-<main id="blogPosts">
-  <!-- 第一篇文章 -->
-  <article class="post">
-    <h2 class="post-title">My First Post</h2>
-    <div class="post-content" contenteditable="true">
-      <p>Today I visited CIU. It is a beautiful college...</p>
-      <img src="IMG_0083.JPG" alt="CIU visit">
+  <main id="explore">
+    <h2 data-en="Explore" data-zh="探索板块">Explore</h2>
+    <p data-en="[Choose a section to explore.]"
+       data-zh="[选择一个板块。]">[Choose a section to explore.]</p>
+
+    <div class="cards">
+      <a class="card" href="#about">
+        <h3 data-en="About Autism" data-zh="关于自闭症">About Autism</h3>
+        <p data-en="[Add content here.]"
+           data-zh="[在这里添加内容。]">[Add content here.]</p>
+      </a>
+      <a class="card" href="#education">
+        <h3 data-en="Education" data-zh="教育与支持">Education</h3>
+        <p data-en="[Add content here.]"
+           data-zh="[在这里添加内容。]">[Add content here.]</p>
+      </a>
+      <a class="card" href="#interviews">
+        <h3 data-en="Teacher Stories" data-zh="教师访谈">Teacher Stories</h3>
+        <p data-en="[Add your interviews here.]"
+           data-zh="[在这里添加教师访谈。]">[Add your interviews here.]</p>
+      </a>
+      <a class="card" href="#research">
+        <h3 data-en="Research" data-zh="研究">Research</h3>
+        <p data-en="[Add research content here.]"
+           data-zh="[在这里添加研究内容。]">[Add research content here.]</p>
+      </a>
+      <a class="card" href="#resources">
+        <h3 data-en="Resources" data-zh="资源">Resources</h3>
+        <p data-en="[Add links here.]"
+           data-zh="[在这里添加链接。]">[Add links here.]</p>
+      </a>
     </div>
-  </article>
-</main>
 
-<div style="text-align:center;">
-  <button id="showNext">Show Next Post</button>
-  <button id="addPost">Add New Post</button>
-</div>
+    <section class="content" id="about">
+      <h2 data-en="About Autism" data-zh="关于自闭症">About Autism</h2>
+      <p data-en="[Write your content here.]"
+         data-zh="[在这里填写内容。]">[Write your content here.]</p>
+    </section>
+    <section class="content" id="education">
+      <h2 data-en="Education" data-zh="教育与支持">Education</h2>
+      <p data-en="[Write your content here.]"
+         data-zh="[在这里填写内容。]">[Write your content here.]</p>
+    </section>
+    <section class="content" id="interviews">
+      <h2 data-en="Teacher Stories" data-zh="教师访谈">Teacher Stories</h2>
+      <p data-en="[Add your interview stories here.]"
+         data-zh="[在这里添加教师访谈内容。]">[Add your interview stories here.]</p>
+    </section>
+    <section class="content" id="research">
+      <h2 data-en="Research" data-zh="研究">Research</h2>
+      <p data-en="[Add your research here.]"
+         data-zh="[在这里添加研究内容。]">[Add your research here.]</p>
+    </section>
+    <section class="content" id="resources">
+      <h2 data-en="Resources" data-zh="资源">Resources</h2>
+      <p data-en="[Add your resource links here.]"
+         data-zh="[在这里添加资源链接。]">[Add your resource links here.]</p>
+    </section>
+  </main>
 
-<script>
-const blogContainer = document.getElementById('blogPosts');
-let currentPostIndex = 0;
+  <footer>
+    <p>Autism Education</p>
+    <p data-en="Student Project" data-zh="学生项目">Student Project</p>
+  </footer>
 
-// 显示第一篇文章
-const posts = blogContainer.querySelectorAll('.post');
-if(posts.length > 0) posts[0].style.display = 'block';
+  <script>
+    let currentLanguage = "en";
+    const languageButton = document.getElementById("languageButton");
 
-// 点击标题显示/隐藏内容
-function attachTitleClick(post) {
-  const title = post.querySelector('.post-title');
-  const content = post.querySelector('.post-content');
-  title.addEventListener('click', () => {
-    content.style.display = content.style.display === 'none' ? 'block' : 'none';
-  });
-}
+    languageButton.addEventListener("click", function () {
+      currentLanguage = currentLanguage === "en" ? "zh" : "en";
+      document.documentElement.lang = currentLanguage;
 
-// 初始化现有文章
-posts.forEach((post, index) => {
-  attachTitleClick(post);
-  // 加载已保存内容
-  const savedContent = localStorage.getItem('post' + index);
-  if(savedContent) post.querySelector('.post-content').innerHTML = savedContent;
-  // 保存内容
-  post.querySelector('.post-content').addEventListener('input', () => {
-    localStorage.setItem('post' + index, post.querySelector('.post-content').innerHTML);
-  });
-});
+      document.querySelectorAll("[data-en]").forEach(function (element) {
+        element.textContent = element.dataset[currentLanguage];
+      });
 
-// Show Next Post 按钮
-document.getElementById('showNext').addEventListener('click', () => {
-  const allPosts = blogContainer.querySelectorAll('.post');
-  if(currentPostIndex < allPosts.length - 1) {
-    currentPostIndex++;
-    allPosts[currentPostIndex].style.display = 'block';
-  }
-});
-
-// Add New Post 按钮
-document.getElementById('addPost').addEventListener('click', () => {
-  const newIndex = blogContainer.querySelectorAll('.post').length;
-  const newPost = document.createElement('article');
-  newPost.className = 'post';
-  newPost.style.display = 'block';
-  newPost.innerHTML = `
-    <h2 class="post-title">New Post ${newIndex + 1}</h2>
-    <div class="post-content" contenteditable="true">
-      <p>Write your new article here...</p>
-    </div>
-  `;
-  blogContainer.appendChild(newPost);
-  attachTitleClick(newPost);
-
-  // 保存新文章内容
-  const contentDiv = newPost.querySelector('.post-content');
-  contentDiv.addEventListener('input', () => {
-    localStorage.setItem('post' + newIndex, contentDiv.innerHTML);
-  });
-});
-</script>
-
+      languageButton.textContent = currentLanguage === "en" ? "中文" : "English";
+    });
+  </script>
 </body>
-</html>
+</html
