@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Blog</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f0f8f5; 
+    margin: 0; 
+    padding: 0; 
+  }
+  header { 
+    background-color: #2e7d32; 
+    color: white; 
+    text-align: center; 
+    padding: 40px 20px; 
+  }
+  header h1 { 
+    margin: 0; 
+    font-size: 3em; 
+  }
+  main { 
+    max-width: 800px; 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  article { 
+    background-color: #dcedc8; 
+    border-radius: 10px; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    display: none; 
+  }
+  .post-title { 
+    cursor: pointer; 
+    font-size: 1.5em; 
+    margin-bottom: 10px; 
+  }
+  .post-title:hover { 
+    text-decoration: underline; 
+  }
+  .post-content img { 
+    max-width: 100%; 
+    height: auto; 
+    margin-top: 10px; 
+    border-radius: 5px; 
+  }
+  button { 
+    padding: 10px 20px; 
+    cursor:pointer; 
+    background-color:#2e7d32; 
+    color:white; 
+    border:none; 
+    border-radius:5px; 
+    margin:10px 5px 30px 0; 
+    font-size: 1em;
+  }
+  button:hover { 
+    background-color:#1b5e20; 
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to My Blog</h1>
+</header>
+
+<main id="blogPosts">
+  <!-- 第一篇文章 -->
+  <article class="post">
+    <h2 class="post-title">My First Post</h2>
+    <div class="post-content" contenteditable="true">
+      <p>Today I visited CIU. It is a beautiful college...</p>
+      <img src="IMG_0083.JPG" alt="CIU visit">
+    </div>
+  </article>
+</main>
+
+<div style="text-align:center;">
+  <button id="showNext">Show Next Post</button>
+  <button id="addPost">Add New Post</button>
+</div>
+
+<script>
+const blogContainer = document.getElementById('blogPosts');
+let currentPostIndex = 0;
+
+// 显示第一篇文章
+const posts = blogContainer.querySelectorAll('.post');
+if(posts.length > 0) posts[0].style.display = 'block';
+
+// 点击标题显示/隐藏内容
+function attachTitleClick(post) {
+  const title = post.querySelector('.post-title');
+  const content = post.querySelector('.post-content');
+  title.addEventListener('click', () => {
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+  });
+}
+
+// 初始化现有文章
+posts.forEach((post, index) => {
+  attachTitleClick(post);
+  // 加载已保存内容
+  const savedContent = localStorage.getItem('post' + index);
+  if(savedContent) post.querySelector('.post-content').innerHTML = savedContent;
+  // 保存内容
+  post.querySelector('.post-content').addEventListener('input', () => {
+    localStorage.setItem('post' + index, post.querySelector('.post-content').innerHTML);
+  });
+});
+
+// Show Next Post 按钮
+document.getElementById('showNext').addEventListener('click', () => {
+  const allPosts = blogContainer.querySelectorAll('.post');
+  if(currentPostIndex < allPosts.length - 1) {
+    currentPostIndex++;
+    allPosts[currentPostIndex].style.display = 'block';
+  }
+});
+
+// Add New Post 按钮
+document.getElementById('addPost').addEventListener('click', () => {
+  const newIndex = blogContainer.querySelectorAll('.post').length;
+  const newPost = document.createElement('article');
+  newPost.className = 'post';
+  newPost.style.display = 'block';
+  newPost.innerHTML = `
+    <h2 class="post-title">New Post ${newIndex + 1}</h2>
+    <div class="post-content" contenteditable="true">
+      <p>Write your new article here...</p>
+    </div>
+  `;
+  blogContainer.appendChild(newPost);
+  attachTitleClick(newPost);
+
+  // 保存新文章内容
+  const contentDiv = newPost.querySelector('.post-content');
+  contentDiv.addEventListener('input', () => {
+    localStorage.setItem('post' + newIndex, contentDiv.innerHTML);
+  });
+});
+</script>
+
+</body>
+</html>
